@@ -89,11 +89,11 @@
     <img src="Mapamundi-los-mercaderes-Graysclae.jpg" alt="Mapa Global" class="world-map">
     <img src="Mapamundi-los-mercaderes.jpg" alt="Fondo Secundario" class="secondary-background" id="secondary-background">
 
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80ab818cc0904781ef4a&pm=s" class="hotspot tierras-espectrales" data-territory="tierras-espectrales"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80158d6ac40078ab97fc&pm=s" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8075860cc3e757abafcc&pm=s" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb805db2ffc882cf2705d4&pm=s" class="hotspot reino-de-valter" data-territory="reino-de-valter"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8049a5eddbb06bcc0c43&pm=s" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash"></a>
+    <a href="contenido/tierras-espectrales.html" class="hotspot tierras-espectrales" data-territory="tierras-espectrales"></a>
+    <a href="contenido/tierra-de-los-gigantes.html" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes"></a>
+    <a href="contenido/territorio-vilkyr.html" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr"></a>
+    <a href="contenido/reino-de-valter.html" class="hotspot reino-de-valter" data-territory="reino-de-valter"></a>
+    <a href="contenido/imperio-tho-valash.html" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash"></a>
 
     <div id="content-container"></div>
     
@@ -129,9 +129,17 @@
     }
 
     async function loadContent(url) {
-        const response = await fetch(url);
-        const content = await response.text();
-        document.getElementById('content-container').innerHTML = content;
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                const content = await response.text();
+                document.getElementById('content-container').innerHTML = content;
+            } else {
+                console.error('Error al cargar el contenido:', response.status);
+            }
+        } catch (error) {
+            console.error('Error de red:', error);
+        }
     }
 
     document.querySelectorAll(".hotspot").forEach(hotspot => {
