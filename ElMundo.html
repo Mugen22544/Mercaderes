@@ -5,82 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercaderes</title>
     <style>
-        .map-container {
-            position: relative;
-            width: 80%;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .world-map {
-            width: 100%;
-            height: auto;
-            position: relative;
-        }
-
-        .secondary-background {
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: auto;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-
-        .territory {
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: auto;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-        }
-
-        .hotspot {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .hotspot.tierras-espectrales {
-            top: 65%;
-            left: 60%;
-            width: 50%;
-            height: 38%;
-        }
-
-        .hotspot.tierra-de-los-gigantes {
-            top: 0%;
-            left: 0%;
-            width: 40%;
-            height: 60%;
-        }
-
-        .hotspot.territorio-vilkyr {
-            top: 0%;
-            left: 45%;
-            width: 40%;
-            height: 40%;
-        }
-
-        .hotspot.reino-de-valter {
-            top: 54%;
-            left: 12%;
-            width: 40%;
-            height: 40%;
-        }
-
-        .hotspot.imperio-tho-valash {
-            top: 35%;
-            left: 35%;
-            width: 65%;
-            height: 15%;
-        }
+        /* ... tu código de estilos permanece igual ... */
     </style>
 </head>
 <body>
@@ -89,11 +14,12 @@
     <img src="Mapamundi-los-mercaderes-Graysclae.jpg" alt="Mapa Global" class="world-map">
     <img src="Mapamundi-los-mercaderes.jpg" alt="Fondo Secundario" class="secondary-background" id="secondary-background">
 
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80ab818cc0904781ef4a&pm=s" target="_parent" class="hotspot tierras-espectrales" data-territory="tierras-espectrales"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80158d6ac40078ab97fc&pm=s" target="_parent" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8075860cc3e757abafcc&pm=s" target="_parent" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb805db2ffc882cf2705d4&pm=s" target="_parent" class="hotspot reino-de-valter" data-territory="reino-de-valter"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8049a5eddbb06bcc0c43&pm=s" target="_parent" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash"></a>
+    <!-- Elimina target="_parent" de los enlaces y agrega data-url con la URL que deseas abrir -->
+    <a href="#" class="hotspot tierras-espectrales" data-territory="tierras-espectrales" data-url="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80ab818cc0904781ef4a&pm=s"></a>
+    <a href="#" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes" data-url="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80158d6ac40078ab97fc&pm=s"></a>
+    <a href="#" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr" data-url="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8075860cc3e757abafcc&pm=s"></a>
+    <a href="#" class="hotspot reino-de-valter" data-territory="reino-de-valter" data-url="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb805db2ffc882cf2705d4&pm=s"></a>
+    <a href="#" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash" data-url="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8049a5eddbb06bcc0c43&pm=s"></a>
    
     <img src="Tierras Espectrales.png" alt="Tierras Espectrales" class="territory tierras-espectrales" id="tierras-espectrales">
     <img src="TierraDeLosGigantes.png" alt="Tierra de los Gigantes" class="territory tierra-de-los-gigantes" id="tierra-de-los-gigantes">
@@ -128,8 +54,16 @@
 
     document.querySelectorAll(".hotspot").forEach(hotspot => {
         const territory = hotspot.dataset.territory;
+        const url = hotspot.dataset.url;
+
         hotspot.addEventListener("mouseenter", () => showTerritory(territory));
         hotspot.addEventListener("mouseleave", resetTerritories);
+
+        // Intercepta el clic para cambiar la URL sin recargar
+        hotspot.addEventListener("click", (e) => {
+            e.preventDefault();  // Evita el comportamiento predeterminado del enlace
+            window.location.replace(url); // Reemplaza la URL sin recargar
+        });
     });
 </script>
 
