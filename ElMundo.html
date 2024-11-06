@@ -3,56 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Mundo</title>
+    <title>Mercaderes</title>
     <style>
-        /* Contenedor principal */
         .map-container {
             position: relative;
-            width: 80%; /* Ajusta el tamaño según sea necesario */
+            width: 80%;
             max-width: 800px;
             margin: auto;
         }
 
-        /* Mapa de fondo */
         .world-map {
             width: 100%;
             height: auto;
             position: relative;
         }
 
-        /* Estilos para los continentes */
-        .continent {
+        .secondary-background {
             position: absolute;
-            transition: transform 0.3s ease; /* Suaviza el zoom en hover */
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: auto;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .territory {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .hotspot {
+            position: absolute;
+            opacity: 0;
             cursor: pointer;
+            z-index: 2;
         }
 
-        .continent:hover {
-            transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
-            z-index: 1; /* Lleva al frente la imagen del continente */
+        .hotspot.tierras-espectrales {
+            top: 65%;
+            left: 60%;
+            width: 50%;
+            height: 38%;
         }
 
-        /* Posiciones específicas para cada continente */
-        .africa { top: 0%; left: 0%; width: 100%; height: auto; }
-        .asia { top: 20%; left: 60%; width: 20%; height: auto; }
-        .europe { top: 25%; left: 50%; width: 15%; height: auto; }
-        .north-america { top: 20%; left: 20%; width: 20%; height: auto; }
-        .south-america { top: 55%; left: 25%; width: 15%; height: auto; }
+        .hotspot.tierra-de-los-gigantes {
+            top: 0%;
+            left: 0%;
+            width: 40%;
+            height: 60%;
+        }
 
-        /* Ajusta la posición y el tamaño según la imagen */
+        .hotspot.territorio-vilkyr {
+            top: 0%;
+            left: 45%;
+            width: 40%;
+            height: 40%;
+        }
+
+        .hotspot.reino-de-valter {
+            top: 54%;
+            left: 12%;
+            width: 40%;
+            height: 40%;
+        }
+
+        .hotspot.imperio-tho-valash {
+            top: 35%;
+            left: 35%;
+            width: 65%;
+            height: 15%;
+        }
     </style>
 </head>
 <body>
 
 <div class="map-container">
-    <!-- Mapa de fondo (sin los continentes recortados) -->
-    <img src="Mapamundi-los-mercaderes.jpg" alt="Mapa Global" class="world-map">
+    <img src="Mapamundi-los-mercaderes-Graysclae.jpg" alt="Mapa Global" class="world-map">
+    <img src="Mapamundi-los-mercaderes.jpg" alt="Fondo Secundario" class="secondary-background" id="secondary-background">
 
-    <!-- Imágenes de continentes superpuestas con enlaces -->
-    <a href="https://ejemplo.com/africa" class="continent africa">
-        <img src="TierraDeLosGigantes.png" alt="África" style="width: 100%;">
+    <a href="https://www.notion.so/e8c9c94cfdb94c4e98a529f4facef57b?pvs=4" class="hotspot tierras-espectrales" data-territory="tierras-espectrales"></a>
+    <a href="https://www.notion.so/e8c9c94cfdb94c4e98a529f4facef57b?pvs=4" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes"></a>
+    <a href="https://www.notion.so/e8c9c94cfdb94c4e98a529f4facef57b?pvs=4" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr"></a>
+    <a href="https://www.notion.so/e8c9c94cfdb94c4e98a529f4facef57b?pvs=4" class="hotspot reino-de-valter" data-territory="reino-de-valter"></a>
+    <a href="https://www.notion.so/e8c9c94cfdb94c4e98a529f4facef57b?pvs=4" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash"></a>
    
+    <img src="Tierras Espectrales.png" alt="Tierras Espectrales" class="territory tierras-espectrales" id="tierras-espectrales">
+    <img src="TierraDeLosGigantes.png" alt="Tierra de los Gigantes" class="territory tierra-de-los-gigantes" id="tierra-de-los-gigantes">
+    <img src="Territorio Vilkÿrr.png" alt="Territorio Vilkÿrr" class="territory territorio-vilkyr" id="territorio-vilkyr">
+    <img src="ReinoDeValter.png" alt="Reino de Valter" class="territory reino-de-valter" id="reino-de-valter">
+    <img src="Imperio Th'o Valash.png" alt="Imperio Th'o Valash" class="territory imperio-tho-valash" id="imperio-tho-valash">
 </div>
+
+<script>
+    const secondaryBackground = document.getElementById("secondary-background");
+    const territories = {
+        "tierras-espectrales": document.getElementById("tierras-espectrales"),       
+        "territorio-vilkyr": document.getElementById("territorio-vilkyr"),
+        "reino-de-valter": document.getElementById("reino-de-valter"),
+        "imperio-tho-valash": document.getElementById("imperio-tho-valash"),
+        "tierra-de-los-gigantes": document.getElementById("tierra-de-los-gigantes"),
+    };
+
+    function showTerritory(territory) {
+        secondaryBackground.style.opacity = "0";
+        for (let key in territories) {
+            territories[key].style.opacity = key === territory ? "1" : "0";
+        }
+    }
+
+    function resetTerritories() {
+        secondaryBackground.style.opacity = "1";
+        for (let key in territories) {
+            territories[key].style.opacity = "0";
+        }
+    }
+
+    document.querySelectorAll(".hotspot").forEach(hotspot => {
+        const territory = hotspot.dataset.territory;
+        hotspot.addEventListener("mouseenter", () => showTerritory(territory));
+        hotspot.addEventListener("mouseleave", resetTerritories);
+    });
+</script>
 
 </body>
 </html>
