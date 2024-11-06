@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map</title>
+    <style>
+        /* Container to hold the map */
+        .map-container {
+            position: relative;
+            width: 80%; /* Adjust size as needed */
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* World map image */
+        .world-map {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Overlay links for each continent */
+        .continent {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s ease; /* Smooth zoom on hover */
+        }
+        
+        .continent:hover {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+
+        /* Individual continent overlays */
+        .africa { top: 50%; left: 40%; width: 10%; height: 15%; }
+        .asia { top: 20%; left: 60%; width: 15%; height: 20%; }
+        .europe { top: 25%; left: 50%; width: 8%; height: 10%; }
+        .north-america { top: 20%; left: 20%; width: 15%; height: 20%; }
+        .south-america { top: 55%; left: 25%; width: 8%; height: 15%; }
+        .australia { top: 65%; left: 75%; width: 10%; height: 10%; }
+
+        /* Invisible background for each clickable area */
+        .continent a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0); /* Transparent */
+        }
+    </style>
+</head>
+<body>
+
+<div class="map-container">
+    <!-- Background map image -->
+    <img src="https://i.postimg.cc/gk87D8cm/Mapamundi-los-mercaderes.jpg" alt="World Map" class="world-map">
+    
+    <!-- Overlay areas for each continent -->
+    <div class="Tierra de los Gigantes">
+        <a href="https://example.com/asia" title="Africa"></a>
+    </div>
+    <div class="Tierras Intermedias">
+        <a href="https://example.com/asia" title="Asia"></a>
+    </div>
+    <div class="Tierras Espectrales">
+        <a href="https://example.com/europe" title="Europe"></a>
+    </div>
+    <div class="continent north-america">
+        <a href="https://example.com/north-america" title="North America"></a>
+    </div>
+    <div class="continent south-america">
+        <a href="https://example.com/south-america" title="South America"></a>
+    </div>
+    <div class="continent australia">
+        <a href="https://example.com/australia" title="Australia"></a>
+    </div>
+</div>
+
+</body>
+</html>
