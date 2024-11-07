@@ -139,8 +139,8 @@
         // Redirigir al enlace al hacer clic usando window.parent.location.href
         hotspot.addEventListener("click", (event) => {
             event.preventDefault(); // Prevenir el comportamiento predeterminado
-            const targetUrl = hotspot.getAttribute("href");
-            window.parent.location.href = targetUrl; // Cambiar la URL del parent
+            const urlParams = hotspot.getAttribute("href").split("?")[1];  // Extrae la parte después de '?'
+            window.parent.postMessage({ action: "openPeekView", params: urlParams }, "*");
         });
     });
 </script>
