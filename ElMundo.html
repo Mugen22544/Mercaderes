@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercaderes</title>
     <style>
-       
-       .map-container {
+        .map-container {
             position: relative;
             width: 80%;
             max-width: 800px;
@@ -90,14 +89,12 @@
     <img src="Mapamundi-los-mercaderes-Graysclae.jpg" alt="Mapa Global" class="world-map">
     <img src="Mapamundi-los-mercaderes.jpg" alt="Fondo Secundario" class="secondary-background" id="secondary-background">
 
-    <!-- Eliminamos target="_parent" en estos enlaces -->
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80ab818cc0904781ef4a&pm=s" class="hotspot tierras-espectrales" data-territory="tierras-espectrales"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80158d6ac40078ab97fc&pm=s" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8075860cc3e757abafcc&pm=s" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb805db2ffc882cf2705d4&pm=s" class="hotspot reino-de-valter" data-territory="reino-de-valter"></a>
-    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8049a5eddbb06bcc0c43&pm=s" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash"></a>
-
-  
+    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80ab818cc0904781ef4a&pm=s&pvs=31" target="_parent" class="hotspot tierras-espectrales" data-territory="tierras-espectrales"></a>
+    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80158d6ac40078ab97fc&pm=s&pvs=31" target="_parent" class="hotspot tierra-de-los-gigantes" data-territory="tierra-de-los-gigantes"></a>
+    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8075860cc3e757abafcc&pm=s&pvs=31" target="_parent" class="hotspot territorio-vilkyr" data-territory="territorio-vilkyr"></a>
+    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb805db2ffc882cf2705d4&pm=s&pvs=31" target="_parent" class="hotspot reino-de-valter" data-territory="reino-de-valter"></a>
+    <a href="https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb8049a5eddbb06bcc0c43&pm=s&pvs=31" target="_parent" class="hotspot imperio-tho-valash" data-territory="imperio-tho-valash"></a>
+   
     <img src="Tierras Espectrales.png" alt="Tierras Espectrales" class="territory tierras-espectrales" id="tierras-espectrales">
     <img src="TierraDeLosGigantes.png" alt="Tierra de los Gigantes" class="territory tierra-de-los-gigantes" id="tierra-de-los-gigantes">
     <img src="Territorio Vilkÿrr.png" alt="Territorio Vilkÿrr" class="territory territorio-vilkyr" id="territorio-vilkyr">
@@ -131,17 +128,8 @@
 
     document.querySelectorAll(".hotspot").forEach(hotspot => {
         const territory = hotspot.dataset.territory;
-
-        // Mostrar el territorio al pasar el mouse
         hotspot.addEventListener("mouseenter", () => showTerritory(territory));
         hotspot.addEventListener("mouseleave", resetTerritories);
-
-        // Redirigir al enlace al hacer clic usando window.parent.location.href
-        hotspot.addEventListener("click", (event) => {
-            event.preventDefault(); // Prevenir el comportamiento predeterminado
-            const urlParams = hotspot.getAttribute("href").split("?")[1];  // Extrae la parte después de '?'
-            window.parent.postMessage({ action: "openPeekView", params: urlParams }, "*");
-        });
     });
 </script>
 
