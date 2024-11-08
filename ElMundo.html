@@ -131,6 +131,10 @@
         hotspot.addEventListener("mouseenter", () => showTerritory(territory));
         hotspot.addEventListener("mouseleave", resetTerritories);
     });
+
+    document.getElementById("testIframe").addEventListener("click", function(event) {
+    event.preventDefault();
+});
 </script>
 
 </body>
