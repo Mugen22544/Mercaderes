@@ -128,13 +128,28 @@
 
     document.querySelectorAll(".hotspot").forEach(hotspot => {
         const territory = hotspot.dataset.territory;
+        const url = hotspot.getAttribute("href");
+
         hotspot.addEventListener("mouseenter", () => showTerritory(territory));
         hotspot.addEventListener("mouseleave", resetTerritories);
+
+        hotspot.addEventListener("click", event => {
+            event.preventDefault();  
+            history.pushState({ territory }, "", url);  
+            showTerritory(territory);  
+        });
+
+
+        
     });
 
-    document.getElementById("testIframe").addEventListener("click", function(event) {
-    event.preventDefault();
-});
+    window.addEventListener("popstate", event => {
+        if (event.state && event.state.territory) {
+            showTerritory(event.state.territory);
+        } else {
+            resetTerritories();
+        }
+    });
 </script>
 
 </body>
