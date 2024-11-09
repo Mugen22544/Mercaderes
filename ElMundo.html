@@ -135,20 +135,13 @@
 
         hotspot.addEventListener("click", event => {
             event.preventDefault();  
-            history.pushState({ territory }, "", url);  
-            showTerritory(territory);  
+            history.pushState(null, "", "https://honey-sound-6df.notion.site/El-Mundo-12bbb57576fb80cab2e0fd7eee739ab5?p=136bb57576fb80158d6ac40078ab97fc&pm=s");
+            history.back();
+            history.forward(); 
         });
 
 
         
-    });
-
-    window.addEventListener("popstate", event => {
-        if (event.state && event.state.territory) {
-            showTerritory(event.state.territory);
-        } else {
-            resetTerritories();
-        }
     });
 </script>
 
