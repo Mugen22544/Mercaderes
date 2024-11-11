@@ -136,6 +136,7 @@
         hotspot.addEventListener("click", event => {
             event.preventDefault();  
             parent.postMessage('openLocation');
+            history.back(); 
         });
         
     });
